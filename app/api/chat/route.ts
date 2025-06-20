@@ -4,7 +4,7 @@ import { GoogleGenAI } from '@google/genai';
 const genAI = new GoogleGenAI({
     apiKey: process.env.GOOGLE_GENAI_API_KEY,
 });
-
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export async function POST(req: NextRequest) {
   const { query } = await req.json();
 

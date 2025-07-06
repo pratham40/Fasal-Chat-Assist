@@ -39,8 +39,17 @@ export default function ChatBox() {
 
   const sendQuery = async (userQuery: string) => {
     try {
+      if (!userQuery.trim()) {
+        alert('कृपया एक प्रश्न दर्ज करें।');
+        return;
+      }
       setLoading(true);
       const res = await axios.post('/api/chat', { query: userQuery });
+      if (res.status !== 200) {
+        alert('उत्तर प्राप्त करने में त्रुटि हुई।');
+        setLoading(false);
+        return;
+      }
       setLoading(false);
       setResponse(res.data.reply);
       speakResponse(res.data.reply);
